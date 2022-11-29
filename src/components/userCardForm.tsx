@@ -7,13 +7,15 @@ type userCardFormType = {
     expDate?: string;
 }
 
+/**
+ * For now props and state will do fine with one type. Can create separate types in future when needed
+ */
 class UserCardForm extends React.Component<userCardFormType, userCardFormType>{
     constructor(props: userCardFormType) {
         super(props);
         this.state = { userName: this.props.userName };
         }
-    
-    
+        
     render(){
         return(
             <div className="App-body">
@@ -42,6 +44,8 @@ class UserCardForm extends React.Component<userCardFormType, userCardFormType>{
 
     handleSubmit = (e: any) => {
         e.preventDefault();
+        console.log(`form has been submitted with following state: `,this.state);
+        alert("Submit is sucessful! See Console for logs :) ");
     }
 }
 
