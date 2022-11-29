@@ -27,7 +27,7 @@ class UserCardForm extends React.Component<userCardFormType, userCardFormType>{
 
                     <input type="month" placeholder="Expiry Date" id="expDate" onChange={this.handleChange} value={this.state.expDate}/>
                     <br /><br /><br />
-                    <button >Submit</button>
+                    <button>Submit</button>
                 </form>
             </div>
         );
