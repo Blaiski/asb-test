@@ -21,11 +21,11 @@ class UserCardForm extends React.Component<userCardFormType, userCardFormType>{
                 <br /><br /><br />
                 <form onSubmit={this.handleSubmit}>
                     <input maxLength={16} placeholder="Credit Card Number"
-                        id="cardNumber" onChange={this.handleChange} value={this.state.cardNumber} />
+                        id="cardNumber" onChange={this.handleChange}  />
 
-                    <input maxLength={3} placeholder="CVC" id="cvc" onChange={this.handleChange} style={{ width: "30px" }} value={this.state.cvc} />
+                    <input maxLength={3} placeholder="CVC" id="cvc" onChange={this.handleChange} style={{ width: "30px" }} />
 
-                    <input type="month" placeholder="Expiry Date" id="expDate" onChange={this.handleChange} value={this.state.expDate}/>
+                    <input type="month" placeholder="Expiry Date" id="expDate" onChange={this.handleChange} />
                     <br /><br /><br />
                     <button>Submit</button>
                 </form>
@@ -33,8 +33,11 @@ class UserCardForm extends React.Component<userCardFormType, userCardFormType>{
         );
     }
 
-    handleChange = (e: any) => {
-       
+    handleChange =  async (e: any) => {
+       await this.setState({
+            [e.target.id]: e.target.value
+        });
+        console.log(`state has been updated...`, this.state);
     }
 
     handleSubmit = (e: any) => {
