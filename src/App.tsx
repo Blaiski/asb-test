@@ -58,7 +58,7 @@ class App extends React.Component<any, AppState>{
 
   content = () => {
     if (this.state.currentView.name === "userCardForm") {
-      return (<UserCardForm userName={this.state.userName} cacheState={this.cacheState}/>);
+      return (<UserCardForm userName={this.state.userName} cacheState={this.cacheState} cachedState={this.state.cardFormState}/>);
     }
     else if (this.state.currentView.name === "menu") {
       return (<Menu />);

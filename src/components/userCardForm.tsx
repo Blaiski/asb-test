@@ -6,6 +6,7 @@ type userCardFormType = {
     cvc?: number;
     expDate?: string;
     cacheState?: any;
+    cachedState?: any;
 }
 
 /**
@@ -15,6 +16,13 @@ class UserCardForm extends React.Component<userCardFormType, userCardFormType>{
     constructor(props: userCardFormType) {
         super(props);
         this.state = { userName: this.props.userName };
+        if(this.props.cachedState !== undefined ){
+            this.state = {
+                cardNumber: this.props.cachedState.cardNumber,
+                cvc: this.props.cachedState.cvc,
+                expDate: this.props.cachedState.expDate,
+            };
+        }
     }
 
     render() {
