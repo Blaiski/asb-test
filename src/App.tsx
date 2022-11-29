@@ -29,7 +29,10 @@ class App extends React.Component<any, AppState>{
       </div>);
   }
 
-
+  /**
+   * This is just a simple implementation. For example, views names and titles should be stored as constants in some
+   * config class. Also, I feel we can also get rid of the switch/if with a sophisticated single return.
+   */
   Navbar = () => {
     switch (this.state.currentView.name) {
       case "userCardForm":
