@@ -5,6 +5,7 @@ type userCardFormType = {
     cardNumber?: number;
     cvc?: number;
     expDate?: string;
+    cacheState?: any;
 }
 
 /**
@@ -14,20 +15,20 @@ class UserCardForm extends React.Component<userCardFormType, userCardFormType>{
     constructor(props: userCardFormType) {
         super(props);
         this.state = { userName: this.props.userName };
-        }
-        
-    render(){
-        return(
+    }
+
+    render() {
+        return (
             <div className="App-body">
                 <label> Welcome {this.props.userName}</label>
                 <br /><br /><br />
                 <form onSubmit={this.handleSubmit}>
                     <input maxLength={16} placeholder="Credit Card Number"
-                        id="cardNumber" onChange={this.handleChange}  />
+                        id="cardNumber" onChange={this.handleChange} value={this.state.cardNumber}/>
 
-                    <input maxLength={3} placeholder="CVC" id="cvc" onChange={this.handleChange} style={{ width: "30px" }} />
+                    <input maxLength={3} placeholder="CVC" id="cvc" onChange={this.handleChange} style={{ width: "30px" }} value={this.state.cvc}/>
 
-                    <input type="month" placeholder="Expiry Date" id="expDate" onChange={this.handleChange} />
+                    <input type="month" placeholder="Expiry Date" id="expDate" onChange={this.handleChange} value={this.state.expDate}/>
                     <br /><br /><br />
                     <button>Submit</button>
                 </form>
@@ -35,8 +36,8 @@ class UserCardForm extends React.Component<userCardFormType, userCardFormType>{
         );
     }
 
-    handleChange =  async (e: any) => {
-       await this.setState({
+    handleChange = async (e: any) => {
+        await this.setState({
             [e.target.id]: e.target.value
         });
         console.log(`state has been updated...`, this.state);
@@ -44,8 +45,12 @@ class UserCardForm extends React.Component<userCardFormType, userCardFormType>{
 
     handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log(`form has been submitted with following state: `,this.state);
+        console.log(`form has been submitted with following state: `, this.state);
         alert("Submit is sucessful! See Console for logs :) ");
+    }
+
+    componentWillUnmount() {
+        this.props.cacheState(this.state);
     }
 }
 

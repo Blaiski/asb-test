@@ -8,6 +8,7 @@ type AppState = {
   currentView: { name: string; title: string },
   previousView?: { name: string; title: string } | null,
   userName?: string;
+  cardFormState?: any
 }
 
 class App extends React.Component<any, AppState>{
@@ -57,7 +58,7 @@ class App extends React.Component<any, AppState>{
 
   content = () => {
     if (this.state.currentView.name === "userCardForm") {
-      return (<UserCardForm userName={this.state.userName} />);
+      return (<UserCardForm userName={this.state.userName} cacheState={this.cacheState}/>);
     }
     else if (this.state.currentView.name === "menu") {
       return (<Menu />);
@@ -93,6 +94,13 @@ class App extends React.Component<any, AppState>{
         }
       })
   }
+
+  cacheState = async (stateToCache: any)=>{
+    await this.setState({
+      cardFormState: stateToCache
+    });
+    console.log (`I have received userCardForm state`, this.state.cardFormState);
+}
 }
 
 export default App;
